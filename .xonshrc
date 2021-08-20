@@ -1,0 +1,4 @@
+# XONSH WIZARD START
+source-bash "echo loading xonsh foreign shell"
+# XONSH WIZARD END
+aliases['dotfiles'] = ['/usr/bin/git', '--git-dir=/home/nik/.mydotfiles/', '--work-tree=/home/nik']

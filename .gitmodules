@@ -1,0 +1,6 @@
+[submodule ".tmux"]
+	path = .tmux
+	url = ./.tmux
+[submodule "tmux-continuum"]
+	path = tmux-continuum
+	url = ./tmux-continuum

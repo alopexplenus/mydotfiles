@@ -1,0 +1,96 @@
+# Don't display the copyright page
+startup_message off
+
+# tab-completion flash in heading bar
+vbell off
+ 
+# keep scrollback n lines
+defscrollback 1000
+
+# Doesn't fix scrollback problem on xterm because if you scroll back
+# all you see is the other terminals history.
+# termcapinfo xterm|xterms|xs|rxvt ti@:te@
+
+# These will let you use 
+bind -c selectHighs 0 select 10 #these three commands are 
+bind -c selectHighs 1 select 11 #added to the command-class
+bind -c selectHighs 2 select 12 #selectHighs
+bind -c selectHighs 3 select 13
+bind -c selectHighs 4 select 14
+bind -c selectHighs 5 select 15 
+
+bind - command -c selectHighs   #bind the hyphen to 
+                                #command-class selectHighs 
+
+bindkey "^j" prev  # change window with ctrl-left
+bindkey "^k" next  # change window with ctrl-right
+#bindkey "^[Od" prev  # change window with ctrl-left
+#bindkey "^[Oc" next  # change window with ctrl-right
+
+#screen -t rtorrent  0	rtorrent	
+#screen -t tunes    	1	ncmpc --host=192.168.1.4 --port=6600 #was for connecting to MPD music server.
+#screen -t CRM ssh root@87.106.242.138
+#screen -t GATOR ssh -p 2222 niksem@niksem.ru
+#screen -t VGL ssh root@217.160.184.111
+#screen -t KRAV ssh -p 8022 webm@176.123.176.100
+#screen -t freetalk freetalk
+#screen -t root  
+#stuff "sudo su\012"
+#chdir /var/www/html/vgl2
+#screen -t valgalla 
+#stuff "git pull origin master\012"
+#chdir /home/nik/nika/nikacrm
+#screen -t nika 
+#stuff "ls -l .\012"
+#
+#chdir /home/nik/nika
+#screen -t SY 
+#stuff "php bin/console server:run"
+
+#chdir /home/par/rally
+#screen -t rally_reg 
+#stuff "ls -l .\012"
+
+#chdir /home/par/garage
+#screen -t garage 
+#stuff "ls -l .\012"
+
+#chdir /home/nik/SimpleIMAPClassifier
+#screen -t IMAP 
+#stuff "ls -l .\012"
+##stuff "git pull origin master; vim . \012"
+##chdir /var/www/html/water
+##screen -t water 
+##stuff "git pull origin master; vim . \012"
+#chdir /home/par/gtd
+#screen -t GTD  
+#stuff "vim .\012"
+#chdir /home/par
+#screen -t mysqlPAR  
+#stuff "mysql -u root -porlandina par\012"
+#chdir /home/par/webui
+#screen -t webui
+#stuff "source activate webui \012"
+#screen -t django-server
+#stuff "source activate webui \012"
+#chdir /home/par/sleep
+#screen -t sleep
+#chdir /home/nik
+#screen -t SOCKS5
+#stuff "./piper.sh   \012"
+#
+#chdir /home/nik/rally_reg
+#screen -t rally
+#stuff "ls -l .\012"
+
+chdir /home/nik
+
+shelltitle "$ |bash"
+
+# THIS IS THE PRETTY BIT
+#change the hardstatus settings to give an window list at the bottom of the                                                                        
+##screen, with the time and date and with the current window highlighted                                                                            
+hardstatus             alwayslastline                                                                                                                          
+#hardstatus string '%{= mK}%-Lw%{= KW}%50>%n%f* %t%{= mK}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
+
