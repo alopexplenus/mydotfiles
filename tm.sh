@@ -8,15 +8,15 @@ tmux has-session -t $session 2>/dev/null
 
 if [ $? != 0 ]; then
 
-    # Set up your session
-    tmux new-session -d -s $session 
-    tmux new-window -n mydotfiles -t $session: 'cd ~/mydotfiles; git pull && vim .; /usr/bin/zsh '
+    tmux new-session -d -s $session -n mydotfiles 'cd ~/mydotfiles; git pull && vim .; /usr/bin/zsh '
 
     #tmux new-window -n nadmozg -t nikita: 'cd ~/nadmozg.wiki; git pull && vim .; /usr/bin/zsh '
-    tmux new-window -n nadmozg -t $session: 'jp' 
+    #tmux new-window -n nadmozg -t $session: 'jp' 
 
-    # work is configured in ~/.ssh/config
-    tmux new-window -n calypso -t $session: "ssh work -t \"export HISTFILE=~/.bash_history_$session; tmux  -L $session new-session -A -s $session \""
+    # hosts are configured in ~/.ssh/config
+    sed -rn "s/^\s*Host\s+(.*)\s*/\1/ip" ~/.ssh/config | while read host; do tmux new-window -n server_$host -t $session: "ssh $host -t \"export HISTFILE=~/.bash_history_$session; tmux  -L $session new-session -A -s $session \""; done
+
+    tmux new-window -n python -t $session: 'python3' 
 
 fi
 
