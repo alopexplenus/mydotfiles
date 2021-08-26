@@ -14,7 +14,7 @@ if [ $? != 0 ]; then
     #tmux new-window -n nadmozg -t $session: 'jp' 
 
     # hosts are configured in ~/.ssh/config
-    sed -rn "s/^\s*Host\s+(.*)\s*/\1/ip" ~/.ssh/config | while read host; do tmux new-window -n server_$host -t $session: "ssh $host -t \"export HISTFILE=~/.bash_history_$session; tmux  -L $session new-session -A -s $session \""; done
+    sed -rn "s/^\s*Host\s+(.*)\s*/\1/ip" ~/.ssh/config | while read host; do tmux new-window -n ssh_$host -t $session: "ssh $host -t \"export HISTFILE=~/.bash_history_$session; tmux  -L $session new-session -A -s $session \""; done
 
     tmux new-window -n python -t $session: 'python3' 
 
