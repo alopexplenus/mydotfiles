@@ -77,6 +77,8 @@ set listchars=tab:..
 set wildignore=*.o,*.obj,*.bak,*.exe
 set visualbell t_vb=
 let g:netrw_liststyle = 3
+let g:netrw_sort_sequence = '\.[\/]$,index\.md,[^.][\/]$,\<core\%(\.\d\+\)\=,\.[a-np-z]$,\.h$,\.c$,\.cpp$,*,\.o$,\.obj$,)'
+
 
 "set ffs=unix,dos,mac
 "set fencs=utf-8,cp1251,koi8-r,ucs-2,cp866
@@ -245,3 +247,5 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
 endif
+
+
