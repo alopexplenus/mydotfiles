@@ -36,8 +36,6 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'alvan/vim-closetag'
 Plugin 'amadeus/vim-mjml'
 Plugin 'mechatroner/rainbow_csv'
-Plugin 'rbtnn/vim-game_engine'
-Plugin 'rbtnn/vim-mario'
 
 "
 " All of your Plugins must be added before the following line
