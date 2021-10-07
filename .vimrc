@@ -1,5 +1,12 @@
 set nocompatible              " be iMproved, required
 set shell=/bin/bash
+
+set exrc  " read .vimrc in the start directory of vim "
+
+
+
+
+
 filetype on
 
 " set the runtime path to include Vundle and initialize
@@ -246,4 +253,7 @@ if has("autocmd")
     \| exe "normal! g'\"" | endif
 endif
 
+let g:vimwiki_folding='expr'
+set autoread
+au CursorHold */tickts.md checktime
 
