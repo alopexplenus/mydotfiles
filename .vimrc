@@ -254,6 +254,7 @@ if has("autocmd")
 endif
 
 let g:vimwiki_folding='expr'
+set foldlevel=99
 set autoread
 au CursorHold */tickts.md checktime
 
