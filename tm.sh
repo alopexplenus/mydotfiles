@@ -7,8 +7,7 @@ session=$(whoami)
 
 tmux new-session -d -s $session -n mydotfiles 'cd ~/mydotfiles; git pull && vim .; /usr/bin/zsh '
 
-#tmux new-window -n nadmozg -t nikita: 'cd ~/nadmozg.wiki; git pull && vim .; /usr/bin/zsh '
-#tmux new-window -n nadmozg -t $session: 'jp' 
+tmux new-window -n notes -t $session: 'cd ~/Sync/obsidian/; vim tickets/tickets.md Nadmozg/index.md -p ' 
 
 # hosts are configured in ~/.ssh/config
 sed -rn "s/^\s*Host\s+(.*)\s*/\1/ip" ~/.ssh/config | while read host; do 
