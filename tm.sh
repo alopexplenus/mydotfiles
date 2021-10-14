@@ -1,35 +1,33 @@
 #!/usr/bin/zsh
 
 session=$(whoami)
-
-
-
 monthly_note=$(date +"%Y-%m.md")
 
+# arguments are session name and window name
+window_exists(){
 
-# Check if the session exists, discarding output
-# We can check $? for the exit status (zero for success, non-zero for failure)
-#
+    lines_found=$(tmux list-windows -t $1 | grep ": $2" | wc -l)
 
-tmux has-session -t $session ||  tmux new-session -d -s $session;
+    (($lines_found==1))
+}
 
-tmux neww  -k -n tickets -t $session: 'cd ~/Sync/obsidian/; vim tickets/tickets.md ;  /usr/bin/zsh ' 
-tmux neww  -k -n notes -t $session: "cd ~/Sync/obsidian/; vim Nadmozg/index.md Nadmozg/$monthly_note -p;  /usr/bin/zsh " 
+
+# Check if the session exists
+#tmux has-session -t $session ||  tmux new-session -d -s $session;
+#tmux attach -t $session
+tmux new-session -A -s $session;
+
+window_exists $session "tickets" || tmux neww  -k -n tickets -t $session: 'cd ~/Sync/obsidian/; vim tickets/tickets.md ;  /usr/bin/zsh ' 
+window_exists $session "notes" || tmux neww  -k -n notes -t $session: "cd ~/Sync/obsidian/; vim Nadmozg/index.md Nadmozg/$monthly_note -p;  /usr/bin/zsh " 
 
  # hosts are configured in ~/.ssh/config
 sed -rn "s/^\s*Host\s+(.*)\s*/\1/ip" ~/.ssh/config | while read host; do 
-    echo $host;
-    tmux neww  -k -n ssh_$host -t $session: "ssh $host -t \"export HISTFILE=~/.bash_history_$session; tmux  -L $session new-session -A -s $session \""
+    #echo "ssh_$host";
+    window_exists $session "ssh_$host" || tmux neww  -k -n ssh_$host -t $session: "ssh $host -t \"export HISTFILE=~/.bash_history_$session; tmux  -L $session new-session -A -s $session \""
     ((c++)) && ((c==2)) && break
 done
 
 
-tmux neww -k -n python -t $session: 'cd; python3' 
+window_exists $session "python" || tmux neww -k -n python -t $session: 'cd; python3' 
 
-tmux attach -t $session
-
-# todo: check if window exists, with output from list-windows
-#➜  ~ tmux list-windows -t nik
-#1: ~#- (1 panes) [80x24] [layout b262,80x24,0,0,5] @5
-#2: python* (1 panes) [80x24] [layout b263,80x24,0,0,6] @6 (active)
 
