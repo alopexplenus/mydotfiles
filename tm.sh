@@ -8,7 +8,7 @@ window_exists(){
 
     lines_found=$(tmux list-windows -t $1 | grep ": $2" | wc -l)
 
-    (($lines_found==1))
+    (($lines_found>0))
 }
 
 
@@ -17,8 +17,8 @@ window_exists(){
 #tmux attach -t $session
 tmux new-session -A -s $session;
 
-window_exists $session "tickets" || tmux neww  -k -n tickets -t $session: 'cd ~/Sync/obsidian/; vim tickets/tickets.md ;  /usr/bin/zsh ' 
-window_exists $session "notes" || tmux neww  -k -n notes -t $session: "cd ~/Sync/obsidian/; vim Nadmozg/index.md Nadmozg/$monthly_note -p;  /usr/bin/zsh " 
+window_exists $session "tickets" || tmux neww  -k -n tickets -t $session: 'cd ~/projects/tickettool/tickets/; vim tickets.md ;  /usr/bin/zsh ' 
+window_exists $session "notes" || tmux neww  -k -n notes -t $session: "cd ~/Sync/obsidian/Nadmozg/; vim index.md $monthly_note -p;  /usr/bin/zsh " 
 
  # hosts are configured in ~/.ssh/config
 sed -rn "s/^\s*Host\s+(.*)\s*/\1/ip" ~/.ssh/config | while read host; do 

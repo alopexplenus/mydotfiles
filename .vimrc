@@ -256,5 +256,7 @@ endif
 let g:vimwiki_folding='expr'
 set foldlevel=99
 set autoread
-au CursorHold */tickts.md checktime
+
+au CursorHold *.md checktime
+au FileChangedShell *.md e!
 
