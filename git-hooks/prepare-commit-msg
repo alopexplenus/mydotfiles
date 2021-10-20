@@ -1,0 +1,15 @@
+#!/bin/sh
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+SHA1=$3
+
+branch_name="$(git symbolic-ref HEAD 2>/dev/null)" || branch_name="(unnamed branch)"     # detached HEAD
+# the ticket id is a sequence of digits at the beginning of a branch name
+BRANCH_NUMBER=$(echo "$branch_name" | sed 's/.*\///g' | sed 's/^\([0-9]\{4,8\}\)[^0-9].*/\1/' | sed 's/.*[^0-9].*//')
+
+#echo $BRANCH_NUMBER > "$COMMIT_MSG_FILE"
+if [ ! -z "$BRANCH_NUMBER" ];
+then
+    sed -i "1s/^[0-9]*[: ]*/$BRANCH_NUMBER: /" "$COMMIT_MSG_FILE";
+fi;
