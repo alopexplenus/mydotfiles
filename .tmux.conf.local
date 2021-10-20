@@ -308,3 +308,6 @@ new-window -n "~/.tmux.conf.local"
 new -n Git
 neww -n Server
 neww -n Misc
+
+setw -g automatic-rename off   # window name stays the same
+
