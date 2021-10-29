@@ -304,10 +304,11 @@ bind -n C-k next-window
 #run-shell ~/mydotfiles/tmux-continuum/continuum.tmux
 #
 #~/mydotfiles/tmuxinit.sh
-new-window -n "~/.tmux.conf.local"
-new -n Git
-neww -n Server
-neww -n Misc
+#new-window -n "~/.tmux.conf.local"
+#new -n Git
+#neww -n Server
+#neww -n Misc
 
-setw -g automatic-rename off   # window name stays the same
+set-window-option -g automatic-rename off   # window name stays the same
+set-window-option -g allow-rename off
 

@@ -97,5 +97,3 @@ export EDITOR='vim'
 #
 #source ~/.bin/tmuxinator.zsh
 
-# tm fom tmux
-alias tm="~/mydotfiles/tm.sh"
