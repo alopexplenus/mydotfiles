@@ -260,3 +260,10 @@ set autoread
 au CursorHold *.md checktime
 au FileChangedShell *.md e!
 
+function! MakeNote(fname)
+    let time = strftime('%y-%m-%d-')
+    execute "tabedit ".time.a:fname.".md"
+endfunc
+
+" cmap mn<cr> :call MakeNote()<cr>
+command  -nargs=1 NN  call MakeNote(<q-args>)

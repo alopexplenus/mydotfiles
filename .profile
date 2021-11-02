@@ -34,11 +34,3 @@ fi
   export PATH="/usr/local/share/python3:$PATH"
 
 
-alias joplin="/home/nik/.joplin/Joplin.AppImage"
-alias ll="ls -lh"
-
-# tm script to create or recreate tmux windows
-alias tm="~/mydotfiles/tm.sh"
-# tt script to create window in current dir in tmux
-alias tt="~/mydotfiles/tt.sh"
-alias xo="xdg-open"
