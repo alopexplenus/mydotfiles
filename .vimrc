@@ -253,6 +253,7 @@ if has("autocmd")
     \| exe "normal! g'\"" | endif
 endif
 
+let g:vimwiki_url_maxsave=0
 let g:vimwiki_folding='expr'
 set foldlevel=99
 set autoread
