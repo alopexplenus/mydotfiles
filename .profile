@@ -30,7 +30,9 @@ fi
 
 
 #add symfony binary to path
-  export PATH="$HOME/.symfony/bin:$PATH"
-  export PATH="/usr/local/share/python3:$PATH"
+export PATH="$HOME/.symfony/bin:$PATH"
+export PATH="/usr/local/share/python3:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
 
 

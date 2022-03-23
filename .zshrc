@@ -104,3 +104,8 @@ alias tm="~/mydotfiles/tm.sh"
 # tt script to create window in current dir in tmux
 alias tt="~/mydotfiles/tt.sh"
 alias xo="xdg-open"
+
+session=$(whoami)
+sed -rn "s/^\s*Host\s+(.*)\s*/\1/ip" ~/.ssh/config | while read host; do 
+    alias $host="ssh $host -t \"export HISTFILE=~/.bash_history_$session; tmux  -L $session new-session -A -s $session \""
+done
