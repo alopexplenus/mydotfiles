@@ -16,7 +16,7 @@ window_exists(){
 # Check if the session exists
 tmux has-session -t $session ||  tmux new-session -d -s $session;
 
-window_exists $session "tickets" || tmux neww  -k -n tickets -t $session: 'cd ~/projects/tickettool/tickets/; vim tickets.md ;  /usr/bin/zsh ' 
+# window_exists $session "tickets" || tmux neww  -k -n tickets -t $session: 'cd ~/projects/tickettool/tickets/; vim tickets.md ;  /usr/bin/zsh ' 
 window_exists $session "notes" || tmux neww  -k -n notes -t $session: "cd ~/Sync/obsidian/Nadmozg/; vim index.md $monthly_note -p;  /usr/bin/zsh " 
 
  # hosts are configured in ~/.ssh/config
