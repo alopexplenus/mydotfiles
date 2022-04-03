@@ -3,6 +3,12 @@ set shell=/bin/bash
 
 set exrc  " read .vimrc in the start directory of vim "
 
+"
+" FOR THIS TO WORK INSTALL VUNDLE FIRST !!!!!!!
+"
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"
+"
 
 
 
