@@ -19,7 +19,7 @@
 # new window retains current path, possible values are:
 #   - true
 #   - false (default)
-tmux_conf_new_window_retain_current_path=false
+tmux_conf_new_window_retain_current_path=true
 
 # new pane retains current path, possible values are:
 #   - true (default)
@@ -268,7 +268,7 @@ tmux_conf_theme_clock_style='24'
 #   - false (default)
 # on macOS, this requires installing reattach-to-user-namespace, see README.md
 # on Linux, this requires xsel or xclip
-tmux_conf_copy_to_os_clipboard=false
+tmux_conf_copy_to_os_clipboard=true
 
 
 # -- user customizations -------------------------------------------------------
@@ -280,17 +280,6 @@ tmux_conf_copy_to_os_clipboard=false
 # start with mouse mode enabled
 #set -g mouse on
 
-# force Vi mode
-#   really you should export VISUAL or EDITOR environment variable, see manual
-#set -g status-keys vi
-#set -g mode-keys vi
-
-# replace C-b by C-a instead of using both prefixes
-# set -gu prefix2
-# unbind C-a
-# unbind C-b
-# set -g prefix C-a
-# bind C-a send-prefix
 
 # move status line to top
 #set -g status-position top
@@ -300,6 +289,17 @@ tmux_conf_copy_to_os_clipboard=false
 #changes by Nik
 bind -n C-j previous-window
 bind -n C-k next-window
+bind % split-window -h 
+bind '"' split-window 
+
+# set C-a as prefix and unbind C-b
+set -g prefix C-a
+unbind C-b
+
+# use send-prefix to pass C-a through to application
+bind C-a send-prefix
+
+
 
 #run-shell ~/mydotfiles/tmux-continuum/continuum.tmux
 #
@@ -312,3 +312,10 @@ bind -n C-k next-window
 set-window-option -g automatic-rename off   # window name stays the same
 set-window-option -g allow-rename off
 
+# pane resizing
+# !!!!! this breaks selecting text in copy mode!!!!! 
+# todo: find out how to do it better
+#bind -r H resize-pane -L 5
+#bind -r J resize-pane -D 5
+#bind -r K resize-pane -U 5
+#bind -r L resize-pane -R 5

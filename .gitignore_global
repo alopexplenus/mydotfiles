@@ -3,3 +3,4 @@
 /bin/sbsync
 .ac-php-conf.json
 .phpunit.result.cache
+.venv

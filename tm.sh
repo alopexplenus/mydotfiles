@@ -3,6 +3,10 @@
 session=$(whoami)
 monthly_note=$(date +"%Y-%m.md")
 weekly_note=$(date +"%Y-KW%V.md")
+current_dir=$(pwd)
+
+tmux set-option default-path ~ 
+
 
 # arguments are session name and window name
 window_exists(){
@@ -22,16 +26,14 @@ window_exists $session "notes" || tmux neww  -k -n notes -t $session: "cd ~/note
 
  # hosts are configured in ~/.ssh/config
 sed -rn "s/^\s*Host\s+(.*)\s*/\1/ip" ~/.ssh/config | while read host; do 
-    #echo "ssh_$host";
-    # old version with custom history file no longer needed
-    #window_exists $session "ssh_$host" || tmux neww  -k -n ssh_$host -t $session: "ssh $host -t \"export HISTFILE=~/.bash_history_$session; tmux  -L $session new-session -A -s $session \""
-    # new version with tmux session
-    window_exists $session "ssh_$host" || tmux neww  -k -n ssh_$host -t $session: "ssh $host -t \"tmux  -L $session new-session -A -s $session \""
-    ((c++)) && ((c==2)) && break
+    window_exists $session "ssh_$host" || tmux neww  -k -n ssh_$host -t $session: "ssh $host"
+    #((c++)) && ((c==2)) && break
+    break #only one ssh window
 done
 
 
 #window_exists $session "python" || tmux neww -k -n python -t $session: 'cd; python3' 
+tmux neww -k -n $(basename $current_dir) -t $session: "cd $current_dir; /usr/bin/zsh"
 
 tmux attach -t $session
 
