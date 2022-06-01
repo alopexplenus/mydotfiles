@@ -34,8 +34,13 @@ export PATH="$HOME/.symfony/bin:$PATH"
 export PATH="/usr/local/share/python3:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
-#launch tilda
-
-tilda -c "$HOME/mydotfiles/tm.sh" &
-
-
+# launch available dropdown terminal
+if command -v guake &> /dev/null
+then
+    guake &
+else
+    if command -v tilda &> /dev/null
+    then
+        tilda &
+    fi
+fi

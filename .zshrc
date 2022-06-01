@@ -127,3 +127,10 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+if [ "$TERM_PROGRAM" != tmux  ]; then
+    if [ "$TMUX_LAUNCHED" != "launched"  ]; then
+        export TMUX_LAUNCHED="launched"
+        tm
+    fi
+fi
+

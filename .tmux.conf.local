@@ -300,22 +300,6 @@ unbind C-b
 bind C-a send-prefix
 
 
-
-#run-shell ~/mydotfiles/tmux-continuum/continuum.tmux
-#
-#~/mydotfiles/tmuxinit.sh
-#new-window -n "~/.tmux.conf.local"
-#new -n Git
-#neww -n Server
-#neww -n Misc
-
 set-window-option -g automatic-rename off   # window name stays the same
 set-window-option -g allow-rename off
 
-# pane resizing
-# !!!!! this breaks selecting text in copy mode!!!!! 
-# todo: find out how to do it better
-#bind -r H resize-pane -L 5
-#bind -r J resize-pane -D 5
-#bind -r K resize-pane -U 5
-#bind -r L resize-pane -R 5
