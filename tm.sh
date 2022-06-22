@@ -24,12 +24,12 @@ tmux has-session -t $session ||  tmux new-session -d -s $session;
 # window_exists $session "tickets" || tmux neww  -k -n tickets -t $session: 'cd ~/projects/tickettool/tickets/; vim tickets.md ;  /usr/bin/zsh ' 
 window_exists $session "notes" || tmux neww  -k -n notes -t $session: "cd ~/notes; vim $weekly_note ;  /usr/bin/zsh " 
 
- # hosts are configured in ~/.ssh/config
-sed -rn "s/^\s*Host\s+(.*)\s*/\1/ip" ~/.ssh/config | while read host; do 
-    window_exists $session "ssh_$host" || tmux neww  -k -n ssh_$host -t $session: "ssh $host"
-    #((c++)) && ((c==2)) && break
-    break #only one ssh window
-done
+# hosts are configured in ~/.ssh/config
+#sed -rn "s/^\s*Host\s+(.*)\s*/\1/ip" ~/.ssh/config | while read host; do 
+#   window_exists $session "ssh_$host" || tmux neww  -k -n ssh_$host -t $session: "ssh $host"
+#    #((c++)) && ((c==2)) && break
+#    break #only one ssh window
+#done
 
 
 #window_exists $session "python" || tmux neww -k -n python -t $session: 'cd; python3' 
