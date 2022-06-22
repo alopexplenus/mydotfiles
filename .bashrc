@@ -132,3 +132,5 @@ export PATH="/home/nik/anaconda3/bin:$PATH"
 
 ## ADDED BY ME
 export PATH="/home/nik/.composer/vendor/bin:$PATH"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

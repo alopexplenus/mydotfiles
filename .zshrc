@@ -134,3 +134,5 @@ if [ "$TERM_PROGRAM" != tmux  ]; then
     fi
 fi
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
