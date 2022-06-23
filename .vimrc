@@ -50,6 +50,7 @@ Plugin 'alvan/vim-closetag'
 Plugin 'amadeus/vim-mjml'
 Plugin 'mechatroner/rainbow_csv'
 Plugin 'vimwiki/vimwiki'
+Plugin 'junegunn/fzf'
 
 "
 " All of your Plugins must be added before the following line
