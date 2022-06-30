@@ -51,6 +51,7 @@ Plugin 'amadeus/vim-mjml'
 Plugin 'mechatroner/rainbow_csv'
 Plugin 'vimwiki/vimwiki'
 Plugin 'junegunn/fzf'
+Plugin 'git@github.com:michal-h21/vimwiki-sync.git'
 
 "
 " All of your Plugins must be added before the following line
@@ -263,6 +264,8 @@ endif
 
 let g:vimwiki_url_maxsave=0
 let g:vimwiki_folding='expr'
+let g:vimwiki_folding='expr'
+let g:vimwiki_list = [{'path':'$HOME/notes'}]
 set foldlevel=99
 set autoread
 
