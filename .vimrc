@@ -265,7 +265,10 @@ endif
 let g:vimwiki_url_maxsave=0
 let g:vimwiki_folding='expr'
 let g:vimwiki_folding='expr'
-let g:vimwiki_list = [{'path':'$HOME/notes'}]
+let g:vimwiki_list = [{'path':'$HOME/notes', 'syntax':'markdown', 'ext':'.md'}]
+"let g:vimwiki_ext2syntax = {'.md':'markdown', '.markdown':'markdown', '.mdown':'.markdown'}
+
+map :ww <Plug>VimwikiIndex
 set foldlevel=99
 set autoread
 
