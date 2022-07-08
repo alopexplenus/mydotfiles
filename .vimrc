@@ -89,7 +89,7 @@ set incsearch
 set ignorecase
 set listchars=tab:..
 set wildignore=*.o,*.obj,*.bak,*.exe
-set visualbell t_vb=
+set visualbell
 let g:netrw_liststyle = 3
 let g:netrw_sort_sequence = '\.[\/]$,index\.md,[^.][\/]$,\<core\%(\.\d\+\)\=,\.[a-np-z]$,\.h$,\.c$,\.cpp$,*,\.o$,\.obj$,)'
 
