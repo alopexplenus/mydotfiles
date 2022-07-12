@@ -98,12 +98,19 @@ export EDITOR='vim'
 #source ~/.bin/tmuxinator.zsh
 
 alias ll="ls -lh"
+alias la="ls -la"
 
 # tm script to create or recreate tmux windows
-alias tm="~/mydotfiles/tm.sh"
+alias tm="~/tm.sh"
 # tt script to create window in current dir in tmux
-alias tt="~/mydotfiles/tt.sh"
+alias tt="~/tt.sh"
 alias xo="xdg-open"
+
+alias gd="git diff"
+alias ga="git add"
+alias gc="git commit"
+alias gs="git stash"
+alias gsa="git stash apply"
 
 session=$(whoami)
 sed -rn "s/^\s*Host\s+(.*)\s*/\1/ip" ~/.ssh/config | while read host; do 
