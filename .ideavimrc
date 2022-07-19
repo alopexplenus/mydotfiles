@@ -3,13 +3,9 @@ set ignorecase
 set pastetoggle=<C-P>
 set visualbell
 
-
 "Disable Accidental Ex mode
 nmap Q <Nop>
 
-
-
-set relativenumber
 set number
 
 " Gernman language keyboard mappings (UTF-8)

@@ -126,20 +126,11 @@ nmap пЕ gT
 nmap Q <Nop>
 
 
-":au FocusLost * :set norelativenumber
-":au FocusGained * :set relativenumber
-"
-"autocmd InsertEnter * :set norelativenumber
-"autocmd InsertLeave * :set relativenumber
-"
-"
 function! NumberToggle()
   if(&number == 1)
-    set norelativenumber
     set nonumber
   else 
     set number
-    set relativenumber
   endif
 endfunc
 
@@ -147,7 +138,6 @@ endfunc
 nnoremap <C-N> :call NumberToggle()<cr>
 
 set number
-set relativenumber
 
 "nmap <C-N><C-N> :set invnumber<CR>
 "nmap <C-J> i <Enter> <Esc>
@@ -266,9 +256,9 @@ let g:vimwiki_url_maxsave=0
 let g:vimwiki_folding='expr'
 let g:vimwiki_folding='expr'
 let g:vimwiki_list = [{'path':'$HOME/notes', 'syntax':'markdown', 'ext':'.md'}]
+let g:vimwiki_listsyms = ' .o~x'
 "let g:vimwiki_ext2syntax = {'.md':'markdown', '.markdown':'markdown', '.mdown':'.markdown'}
 
-map :ww <Plug>VimwikiIndex
 set foldlevel=99
 set autoread
 
@@ -280,5 +270,7 @@ function! MakeNote(fname)
     execute "tabedit ".time.a:fname.".md"
 endfunc
 
-" cmap mn<cr> :call MakeNote()<cr>
-command  -nargs=1 NN  call MakeNote(<q-args>)
+command -nargs=1 NN call MakeNote(<q-args>)
+
+
+let mapleader=" "
