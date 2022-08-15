@@ -111,9 +111,9 @@ alias ga="git add"
 alias gc="git commit"
 alias gs="git stash"
 alias gsa="git stash apply"
+alias gdo="~/opendiff.sh"
 
 alias pm="./run pre-merge"
-alias odf="~/opendiff.sh"
 
 alias ww="cd ~/notes && tmux rename-window notes; vim index.md;"
 
