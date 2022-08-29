@@ -10,9 +10,6 @@ set exrc  " read .vimrc in the start directory of vim "
 "
 "
 
-
-
-
 filetype on
 
 " set the runtime path to include Vundle and initialize
@@ -51,7 +48,7 @@ Plugin 'amadeus/vim-mjml'
 Plugin 'mechatroner/rainbow_csv'
 Plugin 'vimwiki/vimwiki'
 Plugin 'junegunn/fzf'
-Plugin 'git@github.com:michal-h21/vimwiki-sync.git'
+Plugin 'git@github.com:alopexplenus/vimwiki-sync.git'
 
 "
 " All of your Plugins must be added before the following line
@@ -146,7 +143,8 @@ set number
 "imap (  ()<LEFT>
 "imap [  []<LEFT>
 " automatically leave insert mode after 'updatetime' milliseconds of inaction
-"au CursorHoldI * stopinsert
+set updatetime=15000
+au CursorHoldI * stopinsert
 
 
 
@@ -257,7 +255,7 @@ let g:vimwiki_folding='expr'
 let g:vimwiki_folding='expr'
 let g:vimwiki_list = [{'path':'$HOME/notes', 'syntax':'markdown', 'ext':'.md'}]
 let g:vimwiki_listsyms = ' .o~x'
-"let g:vimwiki_ext2syntax = {'.md':'markdown', '.markdown':'markdown', '.mdown':'.markdown'}
+let g:vimwiki_ext2syntax = {'.md':'markdown', '.markdown':'markdown', '.mdown':'markdown'}
 
 set foldlevel=99
 set autoread
