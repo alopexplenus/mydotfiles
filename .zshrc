@@ -97,6 +97,7 @@ export EDITOR='vim'
 #
 #source ~/.bin/tmuxinator.zsh
 
+alias l='ls -lA'
 alias ll="ls -lh"
 alias la="ls -la"
 
