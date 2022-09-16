@@ -1,8 +1,18 @@
 #!/usr/bin/zsh
 
 session=$(whoami)
-monthly_note=$(date +"%Y-%m.md")
 weekly_note=$(date +"%Y-KW%V.md")
+previous_weekly_note=$(date +"%Y-KW%V.md" -d "7 days ago")
+
+if [[ ! -f ~/notes/$weekly_note ]]; then
+    echo $(date +"# %d.%m\n") > ~/notes/$weekly_note
+
+    echo "\n\n# What have I done?!\n\n" > ~/notes/$previous_weekly_note
+    cat ~/notes/todos.md | grep "\[[xX]\]" >> ~/notes/$previous_weekly_note
+    cat ~/notes/f/todos.md | grep "\[[xX]\]" >> ~/notes/$previous_weekly_note
+
+fi
+
 current_dir=$(pwd)
 
 tmux set-option default-path ~ 
