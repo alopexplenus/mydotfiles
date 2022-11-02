@@ -257,6 +257,11 @@ let g:vimwiki_list = [{'path':'$HOME/notes', 'syntax':'markdown', 'ext':'.md'}]
 let g:vimwiki_listsyms = ' .o~x'
 let g:vimwiki_ext2syntax = {'.md':'markdown', '.markdown':'markdown', '.mdown':'markdown'}
 
+au BufNewFile,BufRead,BufReadPost *.md set nonumber
+au BufNewFile,BufRead,BufReadPost *.mdown set nonumber
+au BufNewFile,BufRead,BufReadPost *.markdown set nonumber
+
+
 set foldlevel=99
 set autoread
 
