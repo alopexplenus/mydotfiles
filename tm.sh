@@ -5,6 +5,8 @@ weekly_note=$(date +"%Y-KW%V.md")
 weekly_note_heading=$(date +"# KW%V\n")
 previous_weekly_note=$(date +"%Y-KW%V.md" -d "7 days ago")
 
+git -C ~/notes  pull 
+
 if [[ ! -f ~/notes/$weekly_note ]]; then
     echo "$weekly_note_heading" > ~/notes/$weekly_note
     echo $(date +"# %d.%m\n") >> ~/notes/$weekly_note
