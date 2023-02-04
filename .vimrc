@@ -237,7 +237,7 @@ map Б <
 map Ю >
 " End of the mapping
 
-colorscheme desert
+colorscheme pablo
 hi clear CursorLine
 highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 set cursorline
