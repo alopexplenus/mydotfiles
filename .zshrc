@@ -62,7 +62,13 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git thefuck symfony composer)
+plugins=(
+    git 
+    thefuck 
+    symfony 
+    composer
+    poetry
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,7 +110,6 @@ alias la="ls -la"
 # tm script to create or recreate tmux windows
 alias tm="~/tm.sh"
 # tt script to create window in current dir in tmux
-alias tt="~/tt.sh"
 alias xo="xdg-open"
 
 alias gd="git diff"
