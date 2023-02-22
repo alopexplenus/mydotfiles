@@ -51,7 +51,7 @@ window_exists $session "notes" || tmux neww  -k -n notes -t $session: "cd ~/note
 
 
 #window_exists $session "python" || tmux neww -k -n python -t $session: 'cd; python3' 
-tmux neww -k -n $(basename $current_dir) -t $session: "cd $current_dir; /usr/bin/zsh"
+#tmux neww -k -n $(basename $current_dir) -t $session: "cd $current_dir; /usr/bin/zsh"
 
 tmux attach -t $session
 
