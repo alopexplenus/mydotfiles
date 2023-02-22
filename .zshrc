@@ -109,9 +109,10 @@ alias la="ls -la"
 
 # tm script to create or recreate tmux windows
 alias tm="~/tm.sh"
-# tt script to create window in current dir in tmux
-alias xo="xdg-open"
+# wk script to wake up project, opent in new tmux window and runs project specific wake up script
+alias wk="~/wk.sh"
 
+alias xo="xdg-open"
 alias gd="git diff"
 alias ga="git add"
 alias gc="git commit"
