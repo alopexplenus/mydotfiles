@@ -140,3 +140,8 @@ fi
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# Autocomplete for wake command, wip
+source .wk_autocomplete.sh
+
