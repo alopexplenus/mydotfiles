@@ -6,4 +6,4 @@ _wake_autocomplete()
 }
 
 ## dunno which is correct in my case
-complete -o nospace -F _wake_autocomplete wk
+complete -o nospace -F _wake_autocomplete wk.sh
