@@ -143,5 +143,5 @@ fi
 
 
 # Autocomplete for wake command, wip
-source .wk_autocomplete.sh
+source ~/.wk_autocomplete.sh
 
