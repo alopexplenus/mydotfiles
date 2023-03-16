@@ -6,16 +6,6 @@
 # the default umask is set in /etc/profile; for setting the umas
 # for ssh logins, install and configure the libpam-umask package
 #umask 02
-# if running bas
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
-else
-    setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ru
-    tilda -h &
-fi
 
 
 # set PATH so it includes user's private bin if it exists
@@ -41,6 +31,20 @@ then
 else
     if command -v tilda &> /dev/null
     then
-        tilda &
+        tilda -h  &
     fi
 fi
+
+if command -v vim &> /dev/null
+then
+    export EDITOR=$(which vim)
+else
+    if command -v vi &> /dev/null
+    then
+        export EDITOR=$(which vi)
+    fi
+fi
+
+# keyboard layout
+setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ru
+

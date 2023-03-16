@@ -124,13 +124,7 @@ if [ -x /usr/bin/mint-fortune ]; then
      /usr/bin/mint-fortune
 fi
 
-# added by Anaconda3 4.3.1 installer
-export PATH="/home/par/anaconda3/bin:$PATH"
-
-# added by Anaconda3 installer
-export PATH="/home/nik/anaconda3/bin:$PATH"
-
 ## ADDED BY ME
-export PATH="/home/nik/.composer/vendor/bin:$PATH"
+export PATH="~/.composer/vendor/bin:$PATH"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
