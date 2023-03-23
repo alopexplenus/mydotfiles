@@ -1,4 +1,12 @@
 #!/bin/sh
-
-git diff main... --name-only | while read fname; do charm $fname; done
+ 
+ide=charm
+main_branch=main
+git rev-parse --verify master && main_branch=master
+if [[ -f "./composer.json"  ]]; then
+        
+        echo "composer.json exists."
+        ide=storm
+fi
+git diff $main_branch... --name-only | while read fname; do $ide $fname; done
 
