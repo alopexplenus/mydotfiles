@@ -120,6 +120,10 @@ alias gs="git stash"
 alias gsa="git stash apply"
 alias gdo="~/opendiff.sh"
 
+# taken from this post: https://andrew-quinn.me/fzf/
+alias vfn='vim $(fzf)'
+alias vfb='vim $(rg . | fzf | cut -d ":" -f 1)'
+
 alias pm="./run pre-merge"
 
 alias ww="cd ~/notes && tmux rename-window notes; vim index.md;"
