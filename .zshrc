@@ -149,3 +149,13 @@ fi
 # Autocomplete for wake command, wip
 source ~/.wk_autocomplete.sh
 
+
+# git -f is bad
+git() {
+    if [[ $@ == 'push -f'* || $@ == 'push --force '*   ]]; then
+        echo Hey stupid, use --force-with-lease instead
+    else
+        command git "$@"
+    fi
+}
+
