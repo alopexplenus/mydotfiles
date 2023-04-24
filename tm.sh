@@ -1,27 +1,8 @@
 #!/usr/bin/zsh
 
 session=$(whoami)
-weekly_note=$(date +"%Y-KW%V.md")
-weekly_note_heading=$(date +"# KW%V\n")
-previous_weekly_note=$(date +"%Y-KW%V.md" -d "7 days ago")
-
-git -C ~/notes  pull 
-
-if [[ ! -f ~/notes/$weekly_note ]]; then
-    echo "$weekly_note_heading" > ~/notes/$weekly_note
-    echo $(date +"# %d.%m\n") >> ~/notes/$weekly_note
-
-    echo "\n\n# What have I done?!\n" >> ~/notes/$previous_weekly_note
-
-    cat ~/notes/todos.md | grep "\[[xX]\]" >> ~/notes/$previous_weekly_note
-    sed -i '/^\- \[[xX]\].*/d' ~/notes/todos.md
-
-    cat ~/notes/f/todos.md | grep "\[[xX]\]" >> ~/notes/$previous_weekly_note
-    sed -i '/^\- \[[xX]\].*/d' ~/notes/f/todos.md
-
-fi
-
 current_dir=$(pwd)
+weekly_note=$(date +"%Y-KW%V.md")
 
 tmux set-option default-path ~ 
 
@@ -40,7 +21,7 @@ window_exists(){
 tmux has-session -t $session ||  tmux new-session -d -s $session;
 
 # window_exists $session "tickets" || tmux neww  -k -n tickets -t $session: 'cd ~/projects/tickettool/tickets/; vim tickets.md ;  /usr/bin/zsh ' 
-window_exists $session "notes" || tmux neww  -k -n notes -t $session: "cd ~/notes; vim $weekly_note ;  /usr/bin/zsh " 
+window_exists $session "notes" || tmux neww  -k -n notes -t $session: "cd ~/notes; ~/weeklynote.sh; vim $weekly_note ;  /usr/bin/zsh " 
 
 # hosts are configured in ~/.ssh/config
 #sed -rn "s/^\s*Host\s+(.*)\s*/\1/ip" ~/.ssh/config | while read host; do 

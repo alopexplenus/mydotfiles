@@ -126,7 +126,7 @@ alias vfb='vim $(rg . | fzf | cut -d ":" -f 1)'
 
 alias pm="./run pre-merge"
 
-alias ww="cd ~/notes && tmux rename-window notes; vim index.md;"
+alias ww="cd ~/notes && ~/weeklynote.sh && tmux rename-window notes; vim index.md;"
 
 session=$(whoami)
 sed -rn "s/^\s*Host\s+(.*)\s*/\1/ip" ~/.ssh/config | while read host; do 
