@@ -116,9 +116,15 @@ alias xo="xdg-open"
 alias gd="git diff"
 alias ga="git add"
 alias gc="git commit"
-alias gs="git stash"
-alias gsa="git stash apply"
 alias gdo="~/opendiff.sh"
+
+function gs() {
+    git stash push -m "zsh_stash_name_$1"
+}
+
+function gsa() {
+  git stash apply $(git stash list | grep "zsh_stash_name_$1" | cut -d: -f1)
+}
 
 # taken from this post: https://andrew-quinn.me/fzf/
 alias vfn='vim $(fzf)'
@@ -159,3 +165,4 @@ git() {
     fi
 }
 
+. /opt/asdf-vm/asdf.sh
