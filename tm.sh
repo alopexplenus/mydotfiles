@@ -16,12 +16,17 @@ window_exists(){
     (($lines_found>0))
 }
 
+init_notes(){
+
+    tmux neww  -k -n notes -t $1: "cd ~/notes; /usr/bin/zsh" && tmux send-keys "vim $2" Enter
+}
+
 
 # Check if the session exists
 tmux has-session -t $session ||  tmux new-session -d -s $session;
 
 # window_exists $session "tickets" || tmux neww  -k -n tickets -t $session: 'cd ~/projects/tickettool/tickets/; vim tickets.md ;  /usr/bin/zsh ' 
-window_exists $session "notes" || tmux neww  -k -n notes -t $session: "cd ~/notes;   /usr/bin/zsh " ; tmux send-keys "vim $weekly_note" Enter
+window_exists $session "notes" || init_notes $session $weekly_note
 
 # hosts are configured in ~/.ssh/config
 #sed -rn "s/^\s*Host\s+(.*)\s*/\1/ip" ~/.ssh/config | while read host; do 
