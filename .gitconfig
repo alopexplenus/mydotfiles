@@ -1,0 +1,12 @@
+[user]
+	email = alopexplenus@gmail.com
+	name = nik
+	signingkey = 2D9241D25987AB4A
+[core]
+	excludesFile = ~/.gitignore_global
+[url "ssh://git@github.com/"]
+        insteadOf = https://github.com/
+[init]
+	defaultBranch = main
+[commit]
+	gpgsign = true
