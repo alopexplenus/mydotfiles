@@ -21,7 +21,7 @@ window_exists(){
 tmux has-session -t $session ||  tmux new-session -d -s $session;
 
 # window_exists $session "tickets" || tmux neww  -k -n tickets -t $session: 'cd ~/projects/tickettool/tickets/; vim tickets.md ;  /usr/bin/zsh ' 
-window_exists $session "notes" || tmux neww  -k -n notes -t $session: "cd ~/notes; ~/weeklynote.sh; vim $weekly_note ;  /usr/bin/zsh " 
+window_exists $session "notes" || tmux neww  -k -n notes -t $session: "cd ~/notes;   /usr/bin/zsh " ; tmux send-keys "vim $weekly_note" Enter
 
 # hosts are configured in ~/.ssh/config
 #sed -rn "s/^\s*Host\s+(.*)\s*/\1/ip" ~/.ssh/config | while read host; do 
