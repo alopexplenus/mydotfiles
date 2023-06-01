@@ -127,7 +127,9 @@ function gsa() {
 }
 
 # taken from this post: https://andrew-quinn.me/fzf/
+# Vim Find in Name
 alias vfn='vim $(fzf)'
+# Vim Find in Body
 alias vfb='vim $(rg . | fzf | cut -d ":" -f 1)'
 
 alias pm="./run pre-merge"
@@ -168,3 +170,7 @@ git() {
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+
+# local .zshrc
+test -f ~/.zshrc.local && source ~/.zshrc.local

@@ -5,5 +5,4 @@ _wake_autocomplete()
     return 0
 }
 
-## dunno which is correct in my case
 complete -o nospace -F _wake_autocomplete wk.sh
