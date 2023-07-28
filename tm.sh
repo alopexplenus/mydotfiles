@@ -18,7 +18,10 @@ window_exists(){
 
 init_notes(){
 
-    tmux neww  -k -n notes -t $1: "cd ~/notes; /usr/bin/zsh" && tmux send-keys "vim $2" Enter
+    # todo: add KW Heading if file is not there
+    # todo: add link in the index file
+    # todo: maybe reintroduce the "what have i done" feature
+    tmux neww  -k -n notes -t $1: "cd ~/notes; git pull;  /usr/bin/zsh" && tmux send-keys "vim $2" Enter
 }
 
 
