@@ -133,6 +133,7 @@ alias vfn='vim $(fzf)'
 alias vfb='vim $(rg . | fzf | cut -d ":" -f 1)'
 
 alias pm="./run pre-merge"
+alias fix="./run lint --fix"
 
 alias ww="cd ~/notes && ~/weeklynote.sh && tmux rename-window notes; vim index.md;"
 

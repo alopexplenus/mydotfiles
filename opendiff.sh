@@ -1,8 +1,10 @@
 #!/bin/sh
  
 ide=charm
-main_branch=main
-git rev-parse --verify master && main_branch=master
+main_branch=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
+
+echo "main branch: >>$main_branch<<"
+
 if [[ -f "./composer.json"  ]]; then
         
         echo "composer.json exists. Assuming its PHP..." 
