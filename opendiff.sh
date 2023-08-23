@@ -10,5 +10,16 @@ if [[ -f "./composer.json"  ]]; then
         echo "composer.json exists. Assuming its PHP..." 
         ide=storm
 fi
-git diff $main_branch... --name-only | while read fname; do $ide $fname; done
+
+function openInIde(){
+
+    if [ -f "$2"  ]; then
+            echo "file exists, opening"
+            $1 $2
+        else
+            echo "File does not exist or is not a regular file."
+    fi
+}
+
+git diff $main_branch... --name-only | while read fname; do openInIde $ide $fname; done
 
