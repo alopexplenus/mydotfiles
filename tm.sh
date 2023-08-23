@@ -24,9 +24,17 @@ init_notes(){
     tmux neww  -k -n notes -t $1: "cd ~/notes; git pull;  /usr/bin/zsh" && tmux send-keys "vim $2" Enter
 }
 
+init_session(){
+    tmux new-session -d -s $1;
+    tmux rename-window -t $1:1 'o_0';
+    tmux split-window -v -t $1:1;
+    tmux send-keys -t $1:1.1 'vpn' Enter
+    tmux send-keys -t $1:1.2 'cd ~/Music' Enter
+    
+}
 
 # Check if the session exists
-tmux has-session -t $session ||  tmux new-session -d -s $session;
+tmux has-session -t $session || init_session $session;
 
 # window_exists $session "tickets" || tmux neww  -k -n tickets -t $session: 'cd ~/projects/tickettool/tickets/; vim tickets.md ;  /usr/bin/zsh ' 
 window_exists $session "notes" || init_notes $session $weekly_note
