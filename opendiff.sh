@@ -1,9 +1,15 @@
 #!/bin/sh
  
-ide=charm
-main_branch=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
 
-echo "main branch: >>$main_branch<<"
+if [ -z "$1"  ]; then
+    base_branch=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
+    echo "main branch: >>$base_branch<<"
+else
+    base_branch=$1
+fi
+
+
+ide=charm
 
 if [[ -f "./composer.json"  ]]; then
         
@@ -21,5 +27,5 @@ function openInIde(){
     fi
 }
 
-git diff $main_branch... --name-only | while read fname; do openInIde $ide $fname; done
+git diff $base_branch... --name-only | while read fname; do openInIde $ide $fname; done
 
