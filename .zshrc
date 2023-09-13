@@ -64,7 +64,6 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     git 
-    thefuck 
     symfony 
     composer
     poetry
@@ -142,7 +141,6 @@ sed -rn "s/^\s*Host\s+(.*)\s*/\1/ip" ~/.ssh/config | while read host; do
     alias $host="ssh $host -t \"export HISTFILE=~/.bash_history_$session; tmux  -L $session new-session -A -s $session \""
 done
 
-eval $(thefuck --alias)
 
 if [ "$TERM_PROGRAM" != tmux  ]; then
     if [ "$TMUX_LAUNCHED" != "launched"  ]; then
