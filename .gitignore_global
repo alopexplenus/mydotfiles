@@ -5,3 +5,4 @@
 .ac-php-conf.json
 .phpunit.result.cache
 .venv
+**/vite.config.ts
