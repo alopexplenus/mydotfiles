@@ -42,12 +42,14 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'sjl/gundo.vim'
-Plugin 'jiangmiao/auto-pairs'
+"Plugin 'jiangmiao/auto-pairs'
 Plugin 'alvan/vim-closetag'
 Plugin 'amadeus/vim-mjml'
 Plugin 'mechatroner/rainbow_csv'
 Plugin 'vimwiki/vimwiki'
 Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'michal-h21/vim-zettel'
 Plugin 'git@github.com:alopexplenus/vimwiki-sync.git'
 
 "
@@ -256,6 +258,7 @@ let g:vimwiki_folding='expr'
 let g:vimwiki_list = [{'path':'$HOME/notes', 'syntax':'markdown', 'ext':'.md'}]
 let g:vimwiki_listsyms = ' .o~x'
 let g:vimwiki_ext2syntax = {'.md':'markdown', '.markdown':'markdown', '.mdown':'markdown'}
+
 
 command -nargs=1 S VimwikiSearch <args>
 cmap ln lnext
