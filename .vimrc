@@ -278,14 +278,48 @@ set autoread
 au CursorHold *.md checktime
 au FileChangedShell *.md e!
 
-function! MakeNote(fname)
-    let time = strftime('%y-%m-%d-')
-    execute "tabedit ".time.a:fname.".md"
-endfunc
+function! OpenPreviousFile()
+    let current_file = expand('%:t') 
+    let match = matchlist(current_file, '\(\d\+\)-KW\(\d\+\)')
+    if empty(match[2])
+        echo "no week number found"
+    else
+        let current_yr = match[1]
+        let current_week = match[2]
+        let previous_week = string((current_week - 1))  " Calculate the previous week number
+        let previous_file = current_yr . '-KW' . previous_week . '.md'
 
-command -nargs=1 NN call MakeNote(<q-args>)
+        if filereadable(previous_file)
+            execute 'edit ' . previous_file
+        else
+            echo "No previous file found"
+        endif
+    endif
+endfunction
+
+function! OpenNextFile()
+    let current_file = expand('%:t') 
+    let match = matchlist(current_file, '\(\d\+\)-KW\(\d\+\)')
+    if empty(match[2])
+        echo "no week number found"
+    else
+        let current_yr = match[1]
+        let current_week = match[2]
+        let next_week = string((current_week + 1))  " Calculate the previous week number
+        let next_file = current_yr . '-KW' . next_week . '.md'
+
+        if filereadable(next_file)
+            execute 'edit ' . next_file
+        else
+            echo "No next file found"
+        endif
+    endif
+endfunction
 
 let mapleader=" "
+
+nnoremap <leader>h :call OpenPreviousFile()<CR>
+nnoremap <leader>l :call OpenNextFile()<CR>
 
 " Search for selected text with *
 vnoremap <silent> * :<C-U>
