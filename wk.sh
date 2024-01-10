@@ -14,7 +14,7 @@ session=$(whoami)
 if [ "$#" -gt 0  ]; then
     window_exists $session "$1" || tmux neww  -k -n $1 -t $session: "cd ~/projects/$1 && ./mystuff/wk.sh;  /usr/bin/zsh" 
   else
-    echo "Script has not received any arguments, trying to init project based on current dir"
+    # echo "Script has not received any arguments, trying to init project based on current dir"
     if [ -d "mystuff"  ] && [ -f "mystuff/wk.sh"  ]; then
          ./mystuff/wk.sh
     fi
