@@ -2,7 +2,6 @@
 
 session=$(whoami)
 current_dir=$(pwd)
-weekly_note=$(date +"%Y-KW%V.md")
 
 tmux set-option default-path ~ 
 
@@ -21,7 +20,7 @@ init_notes(){
     # todo: add KW Heading if file is not there
     # todo: add link in the index file
     # todo: maybe reintroduce the "what have i done" feature
-    tmux neww  -k -n notes -t $1: "cd ~/notes; git pull;  /usr/bin/zsh" && tmux send-keys "vim $2" Enter
+    tmux neww  -k -n notes -t $1: "cd ~/notes; git pull;  /usr/bin/zsh" && ~/weeklynotes.sh  && tmux send-keys "vim index.md" Enter
 }
 
 init_session(){
@@ -36,8 +35,7 @@ init_session(){
 # Check if the session exists
 tmux has-session -t $session || init_session $session;
 
-# window_exists $session "tickets" || tmux neww  -k -n tickets -t $session: 'cd ~/projects/tickettool/tickets/; vim tickets.md ;  /usr/bin/zsh ' 
-window_exists $session "notes" || init_notes $session $weekly_note
+window_exists $session "notes" || init_notes $session 
 
 # hosts are configured in ~/.ssh/config
 #sed -rn "s/^\s*Host\s+(.*)\s*/\1/ip" ~/.ssh/config | while read host; do 

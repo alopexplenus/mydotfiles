@@ -134,7 +134,7 @@ alias vfb='vim $(rg . | fzf | cut -d ":" -f 1)'
 alias pm="./run pre-merge"
 alias fix="./run lint --fix"
 
-alias ww="cd ~/notes && ~/weeklynote.sh && tmux rename-window notes; vim index.md;"
+alias ww="cd ~/notes && tmux rename-window notes; vim index.md;"
 
 session=$(whoami)
 sed -rn "s/^\s*Host\s+(.*)\s*/\1/ip" ~/.ssh/config | while read host; do 
@@ -153,8 +153,11 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
-# Autocomplete for wake command, wip
+# Autocomplete for wake command
 source ~/.wk_autocomplete.sh
+
+# Autocomplete for run command
+source ~/.run_autocomplete.sh
 
 
 # git -f is bad
@@ -173,3 +176,8 @@ eval "$(pyenv init -)"
 
 # local .zshrc
 test -f ~/.zshrc.local && source ~/.zshrc.local
+
+
+# direnv for using .envrc files
+eval "$(direnv hook zsh)"
+

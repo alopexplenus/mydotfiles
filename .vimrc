@@ -144,25 +144,10 @@ set number
 "imap {<Enter>  { <Enter>} <UP><end><Enter>
 "imap (  ()<LEFT>
 "imap [  []<LEFT>
-" automatically leave insert mode after 'updatetime' milliseconds of inaction
-set updatetime=15000
-au CursorHoldI * stopinsert
 
 
-
-" Включаем фолдинг для блоков классов/функций
 let php_folding = 1
-
-" Не использовать короткие теги PHP для поиска PHP блоков
 let php_noShortTags = 1
-
-" Подстветка SQL внутри PHP строк
-"let php_sql_query=1
-
-" Подстветка HTML внутри PHP строк
-"let php_htmlInStrings=1 
-
-" Подстветка базовых функций PHP
 let php_baselib = 1
 
 au! BufNewFile,BufRead *.tpl set filetype=php
@@ -264,19 +249,15 @@ command -nargs=1 S VimwikiSearch <args>
 cmap ln lnext
 cmap lp lprevious
 
-
-
-
 au BufNewFile,BufRead,BufReadPost *.md set nonumber
 au BufNewFile,BufRead,BufReadPost *.mdown set nonumber
 au BufNewFile,BufRead,BufReadPost *.markdown set nonumber
 
-
 set foldlevel=99
-set autoread
 
-au CursorHold *.md checktime
-au FileChangedShell *.md e!
+" automatically leave insert mode after 'updatetime' milliseconds of inaction
+set updatetime=15000
+au CursorHoldI * stopinsert
 
 function! OpenPreviousFile()
     let current_file = expand('%:t') 
