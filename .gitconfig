@@ -1,30 +1,25 @@
 [user]
-	email = alopexplenus@gmail.com
-	name = nik
+    email = alopexplenus@gmail.com
+    name = nik
     signingkey = 2D9241D25987AB4A
-	signingkey = B0DC4755E972B4D7
+    #signingkey = B0DC4755E972B4D7
 [core]
-	excludesFile = ~/.gitignore_global
+    excludesFile = ~/.gitignore_global
     pager = delta
 [interactive]
-    diffFilter = delta --color-only --diff-so-fancy 
+    diffFilter = delta  --syntax-theme 1337
 [delta]
-    dark = true
     navigate = true    # use n and N to move between diff sections
-    features = collared-trogon
     side-by-side = true
-    # delta detects terminal colors automatically; set one of these to disable auto-detection
-    # dark = true
-    # light = true
 [merge]
     conflictstyle = diff3
 [diff]
     colorMoved = default
 [url "ssh://git@github.com/"]
-        insteadOf = https://github.com/
+    insteadOf = https://github.com/
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [commit]
-	gpgsign = true
+    gpgsign = true
 [pull]
-	rebase = true
+    rebase = true
