@@ -292,9 +292,35 @@ function! OpenNextFile()
         if filereadable(next_file)
             execute 'edit ' . next_file
         else
-            echo "No next file found"
+            echo "No next file found. Create " . next_file . "? Y/N"
+			let char = getchar()
+			if char == 121 " y
+				call Newnote(next_file)
+			elseif char == 89 " Y
+				call Newnote(next_file)
+			else
+				echo "got " . char . ", Staying in " . current_file
+			endif
+
         endif
     endif
+endfunction
+
+function! Newnote(filename)
+
+    let markerfile = '.latest_weekly_note'
+
+    call writefile([a:filename], markerfile, 'w')
+
+    " Remove the extension from the filename
+    let l:header = substitute(a:filename, '\.md$', '', '')
+
+
+    " Create the new markdown file
+    execute 'edit' a:filename
+
+    " Insert the header into the file
+    call append(0, '# ' . l:header)
 endfunction
 
 let mapleader=" "

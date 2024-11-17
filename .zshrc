@@ -102,9 +102,10 @@ export EDITOR='vim'
 #
 #source ~/.bin/tmuxinator.zsh
 
-alias l='ls -lA'
+alias l='ls -lAh'
 alias ll="ls -lh"
-alias la="ls -la"
+alias la="ls -lah"
+alias lsn="ls -lth | head -n 20"
 
 # tm script to create or recreate tmux windows
 alias tm="~/tm.sh"
@@ -134,7 +135,7 @@ alias vfb='vim $(rg . | fzf | cut -d ":" -f 1)'
 alias pm="./run pre-merge"
 alias fix="./run lint --fix"
 
-alias ww="cd ~/notes && tmux rename-window notes; vim index.md;"
+alias ww="cd ~/notes && tmux rename-window notes; cat .latest_weekly_note | xargs vim"
 
 session=$(whoami)
 sed -rn "s/^\s*Host\s+(.*)\s*/\1/ip" ~/.ssh/config | while read host; do 
