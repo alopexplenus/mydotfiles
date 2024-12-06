@@ -16,19 +16,16 @@ window_exists(){
 }
 
 init_notes(){
-
-    # todo: add KW Heading if file is not there
-    # todo: add link in the index file
     # todo: maybe reintroduce the "what have i done" feature
-    tmux neww  -k -n notes -t $1: "cd ~/notes; git pull;  /usr/bin/zsh" && ~/weeklynotes.sh  && tmux send-keys "vim index.md" Enter
+    tmux neww  -k -n notes -t $1: "cd ~/notes; git pull;  /usr/bin/zsh"
 }
 
 init_session(){
     tmux new-session -d -s $1;
     tmux rename-window -t $1:1 'o_0';
-    tmux split-window -v -t $1:1;
-    tmux send-keys -t $1:1.1 'vpn' Enter
-    tmux send-keys -t $1:1.2 'cd ~/Music' Enter
+    #tmux split-window -v -t $1:1;
+    #tmux send-keys -t $1:1.1 'vpn' Enter
+    #tmux send-keys -t $1:1.2 'cd ~/Music' Enter
     
 }
 
