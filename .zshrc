@@ -110,7 +110,8 @@ alias lsn="ls -lth | head -n 20"
 # tm script to create or recreate tmux windows
 alias tm="~/tm.sh"
 # wk script to wake up project, opent in new tmux window and runs project specific wake up script
-alias wk="~/wk.sh"
+# setting the jobs count here to use in the script
+alias wk="export jobs_count=\$(jobs | wc -l); ~/wk.sh"
 
 alias xo="xdg-open"
 alias gd="git diff"
