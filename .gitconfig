@@ -1,7 +1,7 @@
 [user]
     email = alopexplenus@gmail.com
     name = nik
-    #signingkey = 2D9241D25987AB4A
+    signingkey = 2D9241D25987AB4A
     signingkey = B0DC4755E972B4D7
 [core]
     excludesFile = ~/.gitignore_global
