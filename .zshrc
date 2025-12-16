@@ -152,7 +152,13 @@ if [ "$TERM_PROGRAM" != tmux  ]; then
 fi
 
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Source fzf key bindings
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
+# Optional: customize fzf's appearance and behavior
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:wrap"
 
 
 # Autocomplete for wake command
