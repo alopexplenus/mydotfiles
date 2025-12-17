@@ -118,6 +118,7 @@ alias gd="git diff"
 alias ga="git add"
 alias gc="git commit"
 alias gdo="~/opendiff.sh"
+alias hx="helix"
 
 function gs() {
     git stash push -m "zsh_stash_name_$1"
@@ -189,3 +190,6 @@ test -f ~/.zshrc.local && source ~/.zshrc.local
 # direnv for using .envrc files
 eval "$(direnv hook zsh)"
 
+
+# custom user-owned dir for global node packages
+export PATH=~/.npm-global/bin:$PATH
