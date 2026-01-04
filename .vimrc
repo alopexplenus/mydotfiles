@@ -269,11 +269,17 @@ function! OpenPreviousFile()
     else
         let current_yr = match[1]
         let current_week = match[2]
-        let previous_week = string((current_week - 1))  " Calculate the previous week number
+
+        let previous_week = printf('%02d', current_week - 1)  " two digit previous week number
         let previous_file = current_yr . '-KW' . previous_week . '.md'
+
+        let previous_week_legacy = string((current_week - 1))  
+        let previous_file_legacy = current_yr . '-KW' . previous_week_legacy . '.md'
 
         if filereadable(previous_file)
             execute 'edit ' . previous_file
+        elseif filereadable(previous_file_legacy)
+            execute 'edit ' . previous_file_legacy
         else
             echo "No previous file found"
         endif
@@ -288,11 +294,15 @@ function! OpenNextFile()
     else
         let current_yr = match[1]
         let current_week = match[2]
-        let next_week = string((current_week + 1))  " Calculate the previous week number
+        let next_week = printf('%02d', current_week + 1)  " 2 digit previous week number
         let next_file = current_yr . '-KW' . next_week . '.md'
+        let next_week_legacy = string((current_week + 1))  
+        let next_file_legacy = current_yr . '-KW' . next_week_legacy . '.md'
 
         if filereadable(next_file)
             execute 'edit ' . next_file
+        elseif filereadable(next_file_legacy)
+            execute 'edit ' . next_file_legacy
         else
             echo "No next file found. Create " . next_file . "? Y/N"
 			let char = getchar()
