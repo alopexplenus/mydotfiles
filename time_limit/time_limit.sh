@@ -2,12 +2,26 @@
 
 # CONFIG
 CHECK_PERIOD=60  # Check every minute (in seconds)
-MAX_TIME=40      # Maximum time in minutes
 STATE_DIR="/var/lib/time_limit"
 LOG_FILE="/var/log/time_limit.log"
 
 # Ensure state directory exists
 mkdir -p "$STATE_DIR"
+
+# Function to get user's time limit
+get_user_limit() {
+    local username=$1
+    local limit_file="$STATE_DIR/${username}.limit"
+    
+    # If limit file doesn't exist, user has no limit (excluded)
+    if [ ! -f "$limit_file" ]; then
+        echo ""
+        return
+    fi
+    
+    # Read the limit from file
+    cat "$limit_file"
+}
 
 # Function to send notification to a specific user
 send_notification() {
@@ -33,6 +47,14 @@ process_user() {
     local counter_file="$STATE_DIR/${username}.counter"
     local user_log="$STATE_DIR/${username}.log"
     
+    # Get user's time limit
+    local max_time=$(get_user_limit "$username")
+    
+    # If no limit is set, skip this user
+    if [ -z "$max_time" ]; then
+        return
+    fi
+    
     # Ensure counter file exists
     if [ ! -f "$counter_file" ]; then
         echo "$(date +%F) 0" > "$counter_file"
@@ -52,16 +74,16 @@ process_user() {
     stored_minutes=$((stored_minutes + 1))
     echo "$current_date $stored_minutes" > "$counter_file"
     
-    local log_message="$current_date $current_time User $username active. Time: $stored_minutes/$MAX_TIME min"
+    local log_message="$current_date $current_time User $username active. Time: $stored_minutes/$max_time min"
     echo "$log_message" >> "$user_log"
     echo "$log_message" >> "$LOG_FILE"
     
     # Send notification to user
-    send_notification "$username" "Achtung Zeitlimit" "Zeit verbraucht: $stored_minutes/$MAX_TIME Min"
+    send_notification "$username" "Achtung Zeitlimit" "Zeit verbraucht: $stored_minutes/$max_time Min"
     
     # Kill if over max
-    if [ "$stored_minutes" -ge "$MAX_TIME" ]; then
-        echo "$current_date $current_time TERMINATING user $username (exceeded $MAX_TIME minutes)" >> "$LOG_FILE"
+    if [ "$stored_minutes" -ge "$max_time" ]; then
+        echo "$current_date $current_time TERMINATING user $username (exceeded $max_time minutes)" >> "$LOG_FILE"
         sleep 2  # Give notification time to display
         pkill -KILL -u "$username"
     fi

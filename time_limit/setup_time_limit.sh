@@ -7,11 +7,13 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SERVICE_NAME="time_limit"
+STATE_DIR="/var/lib/time_limit"
 
 # Color output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 error() {
@@ -25,6 +27,60 @@ info() {
 
 warn() {
     echo -e "${YELLOW}[WARN]${NC} $1"
+}
+
+prompt() {
+    echo -e "${BLUE}[INPUT]${NC} $1"
+}
+
+# Function to get all human users (UID >= 1000, excluding nobody)
+get_human_users() {
+    awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd
+}
+
+# Function to configure user limits
+configure_user_limits() {
+    info "Configuring time limits for users..."
+    echo ""
+    
+    local users=$(get_human_users)
+    
+    if [ -z "$users" ]; then
+        warn "No human users found (UID >= 1000)"
+        return
+    fi
+    
+    for username in $users; do
+        echo ""
+        prompt "Configure time limit for user: $username"
+        echo "  Enter time limit in minutes (e.g., 30)"
+        echo "  Or press ENTER to skip (user will not be tracked)"
+        read -p "  Limit: " time_limit
+        
+        if [ -z "$time_limit" ]; then
+            info "Skipping user $username (no limit set)"
+            # Remove limit file if it exists
+            rm -f "$STATE_DIR/${username}.limit"
+        elif [[ "$time_limit" =~ ^[0-9]+$ ]]; then
+            echo "$time_limit" > "$STATE_DIR/${username}.limit"
+            info "Set limit for $username: $time_limit minutes"
+        else
+            warn "Invalid input. Skipping user $username"
+        fi
+    done
+    
+    echo ""
+    info "User limits configured successfully!"
+    echo ""
+    info "Configured users:"
+    for username in $users; do
+        if [ -f "$STATE_DIR/${username}.limit" ]; then
+            local limit=$(cat "$STATE_DIR/${username}.limit")
+            echo "  - $username: $limit minutes"
+        else
+            echo "  - $username: No limit (excluded from tracking)"
+        fi
+    done
 }
 
 # Check if running as root
@@ -47,6 +103,9 @@ mkdir -p /var/log
 touch /var/log/time_limit.log
 chmod 755 /var/lib/time_limit
 chmod 644 /var/log/time_limit.log
+
+# Configure user limits interactively
+configure_user_limits
 
 # Copy main script
 info "Installing script to /usr/local/bin/..."
@@ -88,6 +147,9 @@ if systemctl is-active --quiet "$SERVICE_NAME"; then
     echo "  - Log file:           /var/log/time_limit.log"
     echo "  - Script location:    /usr/local/bin/time_limit.sh"
     echo "  - Service file:       /etc/systemd/system/time_limit.service"
+    echo ""
+    info "User limit files:     /var/lib/time_limit/<username>.limit"
+    info "To change a user's limit, edit their .limit file and restart the service"
 else
     error "Service failed to start. Check logs with: sudo journalctl -u $SERVICE_NAME -n 50"
 fi
