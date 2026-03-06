@@ -1,0 +1,19 @@
+[Unit]
+Description=Time Limit User Sessions Service
+After=multi-user.target
+Documentation=Track user active session time and terminate after max time
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/time_limit.sh
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+# Security settings
+NoNewPrivileges=false
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target
