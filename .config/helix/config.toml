@@ -1,0 +1,12 @@
+[editor]
+soft-wrap.enable = true
+
+[keys.normal]
+C-s = ":write"
+C-n = ":toggle line-numbers"
+C = ["extend_to_line_end", "change_selection"]
+D = ["extend_to_line_end", "delete_selection"]
+
+[keys.normal.g]
+t = "goto_next_buffer"
+T = "goto_previous_buffer"
