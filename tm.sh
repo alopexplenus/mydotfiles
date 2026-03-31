@@ -23,7 +23,7 @@ init_notes(){
 init_session(){
     tmux new-session -d -s $1;
     tmux rename-window -t $1:1 'o_0';
-    #tmux split-window -v -t $1:1;
+    tmux split-window -v -t $1:1;
     #tmux send-keys -t $1:1.1 'vpn' Enter
     #tmux send-keys -t $1:1.2 'cd ~/Music' Enter
     
