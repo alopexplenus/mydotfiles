@@ -1,3 +1,10 @@
+# OPENSPEC:START
+# OpenSpec shell completions configuration
+fpath=("/home/nik/.oh-my-zsh/custom/completions" $fpath)
+autoload -Uz compinit
+compinit
+# OPENSPEC:END
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -193,3 +200,6 @@ eval "$(direnv hook zsh)"
 
 # custom user-owned dir for global node packages
 export PATH=~/.npm-global/bin:$PATH
+
+# opencode
+export PATH=/home/nik/.opencode/bin:$PATH
