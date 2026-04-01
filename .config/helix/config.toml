@@ -9,8 +9,11 @@ D = ["extend_to_line_end", "delete_selection"]
 x = "delete_selection"
 S-v = "extend_to_line_bounds"
 
+[keys.select]
+x = "delete_selection"
+
 [keys.normal.d]
-d = ["extend_to_line_bounds", "delete_selection"]
+d = ["extend_to_line_bounds", "delete_selection", "normal_mode"]
 
 [keys.normal.g]
 t = "goto_next_buffer"
