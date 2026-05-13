@@ -9,7 +9,7 @@ compinit
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/nik/.oh-my-zsh"
+export ZSH="/home/nik/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -80,34 +80,33 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+if [ "$TERM_PROGRAM" != tmux  ]; then
+    if [ "$TMUX_LAUNCHED" != "launched"  ]; then
+        export TMUX_LAUNCHED="launched"
+        tm
+    fi
+fi
+
+
+# Autocomplete for wake command
+source ~/.wk_autocomplete.sh
+
+# Autocomplete for run command
+source ~/.run_autocomplete.sh
+
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-#source ~/.bin/tmuxinator.zsh
 
 alias l='ls -lAh'
 alias ll="ls -lh"
@@ -152,14 +151,6 @@ sed -rn "s/^\s*Host\s+(.*)\s*/\1/ip" ~/.ssh/config | while read host; do
 done
 
 
-if [ "$TERM_PROGRAM" != tmux  ]; then
-    if [ "$TMUX_LAUNCHED" != "launched"  ]; then
-        export TMUX_LAUNCHED="launched"
-        tm
-    fi
-fi
-
-
 # Source fzf key bindings
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
@@ -172,25 +163,14 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:wrap"
 
 
-# Autocomplete for wake command
-source ~/.wk_autocomplete.sh
-
-# Autocomplete for run command
-source ~/.run_autocomplete.sh
-
-
 # git -f is bad
 git() {
     if [[ $@ == 'push -f'* || $@ == 'push --force '*   ]]; then
-        echo Hey stupid, use --force-with-lease instead
+        echo Use --force-with-lease instead
     else
         command git "$@"
     fi
 }
-
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 
 # local .zshrc
@@ -201,8 +181,3 @@ test -f ~/.zshrc.local && source ~/.zshrc.local
 eval "$(direnv hook zsh)"
 
 
-# custom user-owned dir for global node packages
-export PATH=~/.npm-global/bin:$PATH
-
-# opencode
-export PATH=/home/nik/.opencode/bin:$PATH
