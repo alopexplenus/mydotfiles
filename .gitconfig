@@ -1,9 +1,7 @@
 [user]
     email = alopexplenus@gmail.com
     name = nik
-    signingkey = 2D9241D25987AB4A
-    signingkey = B0DC4755E972B4D7
-    signingkey = A2642BDA77E5A9A3
+	signingkey = ~/.ssh/id_ed25519
 [core]
     excludesFile = ~/.gitignore_global
     pager = delta
@@ -23,7 +21,7 @@
 [init]
     defaultBranch = main
 [commit]
-    gpgsign = true
+	gpgsign = true
 [push]
     autoSetupRemote = true
 [credential "https://github.com"]
@@ -32,3 +30,5 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
+[gpg]
+	format = ssh
