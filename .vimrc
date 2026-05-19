@@ -246,7 +246,7 @@ let g:vimwiki_ext2syntax = {'.md':'markdown', '.markdown':'markdown', '.mdown':'
 let g:vimwiki_conceallevel=0
 
 
-command -nargs=1 S VimwikiSearch <args>
+command! -nargs=1 S VimwikiSearch <args>
 cmap ln lnext
 cmap lp lprevious
 
