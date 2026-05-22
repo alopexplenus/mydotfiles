@@ -164,6 +164,9 @@ fi
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
+# deno
+source ~/.deno/env
+
 # Optional: customize fzf's appearance and behavior
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:wrap"
