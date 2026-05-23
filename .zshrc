@@ -80,14 +80,6 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-if [ "$TERM_PROGRAM" != tmux  ]; then
-    if [ "$TMUX_LAUNCHED" != "launched"  ]; then
-        export TMUX_LAUNCHED="launched"
-        tm
-    fi
-fi
-
-
 # Autocomplete for wake command
 source ~/.wk_autocomplete.sh
 
