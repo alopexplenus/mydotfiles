@@ -25,7 +25,7 @@ makewindow(){
       tmux neww  -k -n $2 -t $1: "cd ~/projects/$2 && ./mystuff/wk.sh;  /usr/bin/zsh" 
 	else
 	  # renaming current window 
-      tmux rename-window $2 && cd ~/projects/$2 && ./mystuff/wk.sh;  /usr/bin/zsh 
+      tmux rename-window $2 && tmux send-keys "cd ~/projects/$2 && ./mystuff/wk.sh" Enter
 	fi
 
 }
