@@ -264,7 +264,7 @@ au CursorHoldI * stopinsert
 function! OpenPreviousFile()
     let current_file = expand('%:t') 
     let match = matchlist(current_file, '\(\d\+\)-KW\(\d\+\)')
-    if empty(match[2])
+    if empty(match)
         echo "no week number found"
     else
         let current_yr = match[1]
@@ -289,7 +289,7 @@ endfunction
 function! OpenNextFile()
     let current_file = expand('%:t') 
     let match = matchlist(current_file, '\(\d\+\)-KW\(\d\+\)')
-    if empty(match[2])
+    if empty(match)
         echo "no week number found"
     else
         let current_yr = match[1]
@@ -300,6 +300,10 @@ function! OpenNextFile()
         let next_file_legacy = current_yr . '-KW' . next_week_legacy . '.md'
 
         if filereadable(next_file)
+            " update latest weekly note marker file
+            let markerfile = '.latest_weekly_note'
+            call writefile([next_file], markerfile, 'w')
+
             execute 'edit ' . next_file
         elseif filereadable(next_file_legacy)
             execute 'edit ' . next_file_legacy
@@ -320,8 +324,8 @@ endfunction
 
 function! Newnote(filename)
 
+    " update latest weekly note marker file
     let markerfile = '.latest_weekly_note'
-
     call writefile([a:filename], markerfile, 'w')
 
     " Remove the extension from the filename
