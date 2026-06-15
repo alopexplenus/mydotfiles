@@ -22,7 +22,6 @@ require("lazy").setup({
     -- Extras
     { import = "lazyvim.plugins.extras.lang.python" },
     { import = "lazyvim.plugins.extras.lang.typescript" },
-    { import = "lazyvim.plugins.extras.editor.lazygit" },
     -- Custom plugins
     { import = "plugins" },
   },
