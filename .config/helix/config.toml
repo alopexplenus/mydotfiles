@@ -1,6 +1,9 @@
 [editor]
 soft-wrap.enable = true
 
+[editor.file-picker]
+hidden = false
+
 [keys.normal]
 C-s = ":write"
 C-n = ":toggle line-numbers"
