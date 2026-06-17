@@ -117,6 +117,7 @@ alias ga="git add"
 alias gc="git commit"
 alias gdo="~/opendiff.sh"
 alias hx="helix"
+alias nv="nvim"
 
 function gs() {
     git stash push -m "zsh_stash_name_$1"
