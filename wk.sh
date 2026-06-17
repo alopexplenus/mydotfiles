@@ -9,11 +9,30 @@ window_exists(){
     (($lines_found>0))
 }
 
-makewindow(){
-    if [ ! -d ~/projects/$2 ]; then
-          echo "Directory ~/projects/$2 does not exist."
-          exit 1
+ensure_mystuff(){
+    local proj_dir="$1"
+    mkdir -p "$proj_dir/mystuff"
+    if [ ! -f "$proj_dir/mystuff/wk.sh" ]; then
+        cat > "$proj_dir/mystuff/wk.sh" <<'EOF'
+#!/bin/bash
+# project-specific workspace setup
+EOF
+        chmod +x "$proj_dir/mystuff/wk.sh"
     fi
+}
+
+makewindow(){
+    local proj_dir=~/projects/$2
+    if [ ! -d "$proj_dir" ]; then
+        read -p "Directory $proj_dir does not exist. Create it? [y/N] " confirm
+        if [[ "$confirm" =~ ^[Yy]$ ]]; then
+            mkdir -p "$proj_dir"
+        else
+            exit 1
+        fi
+    fi
+
+    ensure_mystuff "$proj_dir"
 
 	window_name=$(tmux display-message -p '#W')
 	pane_count=$(tmux list-panes | wc -l)
@@ -22,10 +41,10 @@ makewindow(){
     # jobs_count needs to be set as an environment var as `jobs` does not work in a script
 	if [ "$window_name" != "zsh" ] || [ "$pane_count" -gt 1 ] || [ "$jobs_count" -gt 0 ]; then
 	  # creating new window
-      tmux neww  -k -n $2 -t $1: "cd ~/projects/$2 && ./mystuff/wk.sh;  /usr/bin/zsh" 
+      tmux neww  -k -n $2 -t $1: "cd $proj_dir && ./mystuff/wk.sh;  /usr/bin/zsh" 
 	else
 	  # renaming current window 
-      tmux rename-window $2 && tmux send-keys "cd ~/projects/$2 && ./mystuff/wk.sh" Enter
+      tmux rename-window $2 && tmux send-keys "cd $proj_dir && ./mystuff/wk.sh" Enter
 	fi
 
 }
