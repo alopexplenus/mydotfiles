@@ -304,3 +304,9 @@ bind C-a send-prefix
 set-window-option -g automatic-rename off   # window name stays the same
 set-window-option -g allow-rename off
 
+# Scratch popup slots — Alt-J (forward) / Alt-K (backward)
+# Each slot is a persistent tmux session; launch any app inside
+# Dismiss with Ctrl-a d (detach, session stays alive)
+bind-key -n M-j run-shell "~/tmux-scratch.sh 1"
+bind-key -n M-k run-shell "~/tmux-scratch.sh -1"
+
