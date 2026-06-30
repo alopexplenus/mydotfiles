@@ -1,15 +1,19 @@
 #!/usr/bin/zsh
 
+# No-op if not an interactive terminal
+if [ ! -t 1 ]; then
+  exit 0
+fi
+
 session=$(whoami)
 current_dir=$(pwd)
 
-tmux set-option default-path ~ 
 
 
 # arguments are session name and window name
 window_exists(){
 
-    lines_found=$(tmux list-windows -t $1 | grep ": $2" | wc -l)
+    lines_found=$(tmux list-windows -t $1 2>/dev/null | grep ": $2" | wc -l)
 
     #echo "lines found with  $2: $lines_found  \n"
     (($lines_found>0))
@@ -30,7 +34,7 @@ init_session(){
 }
 
 # Check if the session exists
-tmux has-session -t $session || init_session $session;
+tmux has-session -t $session 2>/dev/null || init_session $session;
 
 window_exists $session "notes" || init_notes $session 
 
