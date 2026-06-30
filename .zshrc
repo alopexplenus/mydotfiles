@@ -127,6 +127,15 @@ function gsa() {
   git stash apply $(git stash list | grep "zsh_stash_name_$1" | cut -d: -f1)
 }
 
+function swtch() {
+  local jobs_output=$(jobs -s)
+  local nums=(${(f)"$(echo "$jobs_output" | grep -o '^\[[0-9]*\]' | tr -d '[]')"})
+  local current=$(echo "$jobs_output" | grep -F '+' | grep -o '^\[[0-9]*\]' | tr -d '[]')
+  local idx=${nums[(i)$current]}
+  local next_idx=$(( idx % ${#nums} + 1 ))
+  fg %${nums[$next_idx]}
+}
+
 # taken from this post: https://andrew-quinn.me/fzf/
 # Vim Find in Name
 alias vfn='vim $(fzf)'

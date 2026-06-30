@@ -288,6 +288,7 @@ tmux_conf_copy_to_os_clipboard=true
 
 
 #changes by Nik
+bind -n M-q run-shell 'pane_pid=#{pane_pid}; fg_pgid=$(ps -o pgid= --ppid $pane_pid | tr -d " "); [ -n "$fg_pgid" ] && kill -TSTP -$fg_pgid' \; send-keys 'swtch' Enter
 bind -n C-j previous-window
 bind -n C-k next-window
 bind % split-window -h 
